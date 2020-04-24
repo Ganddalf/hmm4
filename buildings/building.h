@@ -46,9 +46,7 @@ public:
 class UnitBuilding : public Building {
 public:
     ~UnitBuilding(){}
-    std::string Description() const override {
-        return "Unit building (must be overrided!)";
-    }
+    virtual std::string Description() const = 0;
     virtual Unit* GetUnit() = 0;
 };
 
