@@ -5,7 +5,7 @@
 #ifndef HMM4_ACADEMY_UNITS_H
 #define HMM4_ACADEMY_UNITS_H
 
-class Halfling : public Tier1Unit {
+class Halfling : public Unit {
 public:
     Halfling(){
         costPerUnit = 22;
@@ -22,11 +22,11 @@ public:
     }
     ~Halfling(){}
     std::string Description() const override{
-        return "This is a halfling!";
+        return "Halfling";
     }
 };
 
-class Dwarf : public Tier1Unit {
+class Dwarf : public Unit {
 public:
     Dwarf(){
         costPerUnit = 28;
@@ -43,11 +43,11 @@ public:
     }
     ~Dwarf(){}
     std::string Description() const override{
-        return "This is an dwarf!";
+        return "Dwarf";
     }
 };
 
-class GoldGolem : public Tier2Unit {
+class GoldGolem : public Unit {
 public:
     GoldGolem(){
         costPerUnit = 240;
@@ -64,11 +64,11 @@ public:
     }
     ~GoldGolem(){}
     std::string Description() const override{
-        return "This is a gold golem!";
+        return "Gold golem";
     }
 };
 
-class Mage : public Tier2Unit {
+class Mage : public Unit {
 public:
     Mage(){
         costPerUnit = 160;
@@ -85,11 +85,11 @@ public:
     }
     ~Mage(){}
     std::string Description() const override{
-        return "This is a mage!";
+        return "Mage";
     }
 };
 
-class Naga : public Tier3Unit {
+class Naga : public Unit {
 public:
     Naga(){
         costPerUnit = 850;
@@ -106,11 +106,11 @@ public:
     }
     ~Naga(){}
     std::string Description() const override{
-        return "This is a naga!";
+        return "Naga";
     }
 };
 
-class Genie : public Tier3Unit {
+class Genie : public Unit {
 public:
     Genie(){
         costPerUnit = 550;
@@ -127,11 +127,11 @@ public:
     }
     ~Genie(){}
     std::string Description() const override{
-        return "This is a genie!";
+        return "Genie";
     }
 };
 
-class Titan : public Tier4Unit {
+class Titan : public Unit {
 public:
     Titan(){
         costPerUnit = 4000;
@@ -148,11 +148,11 @@ public:
     }
     ~Titan(){}
     std::string Description() const override{
-        return "Attack on Titan!";
+        return "Titan";
     }
 };
 
-class DragonGolem : public Tier4Unit {
+class DragonGolem : public Unit {
 public:
     DragonGolem(){
         costPerUnit = 4000;
@@ -169,7 +169,7 @@ public:
     }
     ~DragonGolem(){}
     std::string Description() const override{
-        return "This is a Dragon Golem!";
+        return "Dragon golem";
     }
 };
 

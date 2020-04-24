@@ -5,59 +5,59 @@
 #ifndef HMM4_ASYLUM_UNITS_H
 #define HMM4_ASYLUM_UNITS_H
 
-class Bandit : public Tier1Unit {
+class Bandit : public Unit {
     ~Bandit(){}
     std::string Description() const override{
-        return "This is a bandit!";
+        return "Bandit";
     }
 };
 
-class Orc : public Tier1Unit {
+class Orc : public Unit {
     ~Orc(){}
     std::string Description() const override{
-        return "This is an orc!";
+        return "Orc";
     }
 };
 
-class Medusa : public Tier2Unit {
+class Medusa : public Unit {
     ~Medusa(){}
     std::string Description() const override{
-        return "This is a medusa!";
+        return "Medusa";
     }
 };
 
-class Minotaur : public Tier2Unit {
+class Minotaur : public Unit {
     ~Minotaur(){}
     std::string Description() const override{
-        return "This is a minotaur!";
+        return "Minotaur";
     }
 };
 
-class Nightmare : public Tier3Unit {
+class Nightmare : public Unit {
     ~Nightmare(){}
     std::string Description() const override{
-        return "This is a nightmare!";
+        return "Nightmare";
     }
 };
 
-class Efreet : public Tier3Unit {
+class Efreet : public Unit {
     ~Efreet(){}
     std::string Description() const override{
-        return "This is an efreet!";
+        return "Efreet";
     }
 };
 
-class Hydra : public Tier4Unit {
+class Hydra : public Unit {
     ~Hydra(){}
     std::string Description() const override{
-        return "Hail Hydra!";
+        return "Hydra";
     }
 };
 
-class BlackDragon : public Tier4Unit {
+class BlackDragon : public Unit {
     ~BlackDragon(){}
     std::string Description() const override{
-        return "Wooooouh! This is a king - Black Dragon!";
+        return "Black dragon";
     }
 };
 
