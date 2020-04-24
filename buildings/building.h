@@ -1,5 +1,5 @@
 //
-// Created by potap on 24.04.2020.
+// Created by Ganddalf on 24.04.2020.
 //
 
 #ifndef HMM4_BUILDING_H
