@@ -178,6 +178,49 @@ public:
 };
 
 
+class Squad{
+protected:
+    Unit* unit;
+    unsigned int number;
+public:
+    Squad(){
+        unit = NULL;
+        number = 0;
+    }
+    Squad(Unit* unit, unsigned int number){
+        this->unit = unit;
+        this->number = number;
+    }
+    ~Squad(){}
+    string HowMuch(){
+        if(number == 0){
+            return " - ";
+        } else if(number < 5){
+            return "Несколько";
+        } else if(number < 10){
+            return "Немного";
+        } else if(number < 20){
+            return "Группа";
+        } else if(number < 50){
+            return "Много";
+        } else if(number < 100){
+            return "Орда";
+        } else if(number < 200){
+            return "Сотни";
+        } else if(number < 500){
+            return "Туча";
+        } else if(number < 1000){
+            return "Тьма";
+        } else {
+            return "Легион";
+        }
+    }
+    string GetUnitDescription(){
+        return unit->Description();
+    }
+};
+
+
 int main(){
     Director* director= new Director();
     AcademyBuilder* builder = new AcademyBuilder();
@@ -187,6 +230,11 @@ int main(){
     cin >> N;
 
     Town* town;
+
+    Halfling* hafling = new Halfling();
+
+    Squad squad1(hafling, 10);
+    cout << squad1.HowMuch() << ' ' << squad1.GetUnitDescription() << endl;
 
     if(N == 1){
         cout << "Little town\n";
