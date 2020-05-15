@@ -8,20 +8,25 @@
 
 class Unit {
 protected:
-    int costPerUnit;
-    int meleeAttack;
-    int rangedAttack;
-    int meleeDefense;
-    int rangedDefense;
-    int hitPoints;
+    int cost;
+    int hp;
     int damage;
-    int movement;
-    int speed;
-    int ammo;
     int growth;
 public:
     virtual ~Unit(){}
-    virtual std::string Description() const = 0;
+    virtual std::string name() const = 0;
+    int GetCost(){
+        return cost;
+    }
+    int GetHP(){
+        return hp;
+    }
+    int GetDamage(){
+        return damage;
+    }
+    int GetGrowth(){
+        return growth;
+    }
 };
 
 #endif //HMM4_UNIT_H

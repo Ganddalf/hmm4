@@ -12,14 +12,12 @@
 
 class DwarvenMines : public UnitBuilding {
 public:
-    DwarvenMines(){}
+    DwarvenMines(){
+        this->unit = new Dwarf();
+    }
     ~DwarvenMines(){}
     std::string Description() const override {
         return "Dwarven Mines";
-    }
-    Unit* GetUnit(){
-        Dwarf* dwarf = new Dwarf();
-        return dwarf;
     }
 };
 
@@ -49,19 +47,6 @@ public:
     }
 };
 
-class MageTower : public UnitBuilding {
-public:
-    MageTower(){}
-    ~MageTower(){}
-    std::string Description() const override {
-        return "Mage Tower";
-    }
-    Unit* GetUnit(){
-        Mage* mage = new Mage();
-        return mage;
-    }
-};
-
 class GoldenPavilion : public UnitBuilding {
 public:
     GoldenPavilion(){}
@@ -72,32 +57,6 @@ public:
     Unit* GetUnit(){
         Naga* naga = new Naga();
         return naga;
-    }
-};
-
-class AltarOfWishes : public UnitBuilding {
-public:
-    AltarOfWishes(){}
-    ~AltarOfWishes(){}
-    std::string Description() const override {
-        return "Altar of Wishes";
-    }
-    Unit* GetUnit(){
-        Genie* genie = new Genie();
-        return genie;
-    }
-};
-
-class DragonFactory : public UnitBuilding {
-public:
-    DragonFactory(){}
-    ~DragonFactory(){}
-    std::string Description() const override {
-        return "Dragon Factory";
-    }
-    Unit* GetUnit(){
-        DragonGolem* dragonGolem = new DragonGolem();
-        return dragonGolem;
     }
 };
 

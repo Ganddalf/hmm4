@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <typeinfo>
+#include <cmath>
+#include <cstdlib>
 
 #include "units/Unit.h"
 #include "units/asylum_units.h"
@@ -50,14 +52,11 @@ public:
     virtual void ProduceFort() const =0;
     virtual void ProduceTavern() const =0;
     virtual void ProducePrison() const =0;
-    virtual void ProduceUnitBuilding11() const =0;
-    virtual void ProduceUnitBuilding12() const =0;
-    virtual void ProduceUnitBuilding21() const =0;
-    virtual void ProduceUnitBuilding22() const =0;
-    virtual void ProduceUnitBuilding31() const =0;
-    virtual void ProduceUnitBuilding32() const =0;
-    virtual void ProduceUnitBuilding41() const =0;
-    virtual void ProduceUnitBuilding42() const =0;
+    virtual void ProduceUnitBuilding1() const =0;
+    virtual void ProduceUnitBuilding2() const =0;
+    virtual void ProduceUnitBuilding3() const =0;
+    virtual void ProduceUnitBuilding4() const =0;
+    virtual void ProduceUnitBuilding5() const =0;
 };
 
 
@@ -99,35 +98,23 @@ public:
         this->town->buildings_.push_back(prison);
     }
 
-    void ProduceUnitBuilding11()const override {
+    void ProduceUnitBuilding1()const override {
         HalflingBurrows* unitBuilding = new HalflingBurrows();
         this->town->buildings_.push_back(unitBuilding);
     }
-    void ProduceUnitBuilding12()const override {
+    void ProduceUnitBuilding2()const override {
         DwarvenMines* unitBuilding = new DwarvenMines();
         this->town->buildings_.push_back(unitBuilding);
     }
-    void ProduceUnitBuilding21()const override {
+    void ProduceUnitBuilding3()const override {
         GolemFactory* unitBuilding = new GolemFactory();
         this->town->buildings_.push_back(unitBuilding);
     }
-    void ProduceUnitBuilding22()const override {
-        MageTower* unitBuilding = new MageTower();
-        this->town->buildings_.push_back(unitBuilding);
-    }
-    void ProduceUnitBuilding31()const override {
+    void ProduceUnitBuilding4()const override {
         GoldenPavilion* unitBuilding = new GoldenPavilion();
         this->town->buildings_.push_back(unitBuilding);
     }
-    void ProduceUnitBuilding32()const override {
-        AltarOfWishes* unitBuilding = new AltarOfWishes();
-        this->town->buildings_.push_back(unitBuilding);
-    }
-    void ProduceUnitBuilding41()const override {
-        DragonFactory* unitBuilding = new DragonFactory();
-        this->town->buildings_.push_back(unitBuilding);
-    }
-    void ProduceUnitBuilding42()const override {
+    void ProduceUnitBuilding5()const override {
         CloudCastle* unitBuilding = new CloudCastle();
         this->town->buildings_.push_back(unitBuilding);
     }
@@ -152,36 +139,35 @@ public:
     void BuildLittleTown(){
         this->builder->ProduceHall();
         this->builder->ProducePrison();
-        this->builder->ProduceUnitBuilding11();
-        this->builder->ProduceUnitBuilding12();
+        this->builder->ProduceUnitBuilding1();
     }
 
     void BuildMediumTown(){
         this->builder->ProduceFort();
         this->builder->ProduceHall();
         this->builder->ProducePrison();
-        this->builder->ProduceUnitBuilding11();
-        this->builder->ProduceUnitBuilding12();
-        this->builder->ProduceUnitBuilding22();
+        this->builder->ProduceUnitBuilding1();
+        this->builder->ProduceUnitBuilding2();
+        this->builder->ProduceUnitBuilding3();
     }
     void BuildLargeTown(){
         this->builder->ProduceFort();
         this->builder->ProduceHall();
         this->builder->ProduceTavern();
         this->builder->ProducePrison();
-        this->builder->ProduceUnitBuilding11();
-        this->builder->ProduceUnitBuilding12();
-        this->builder->ProduceUnitBuilding22();
-        this->builder->ProduceUnitBuilding31();
-        this->builder->ProduceUnitBuilding42();
+        this->builder->ProduceUnitBuilding1();
+        this->builder->ProduceUnitBuilding2();
+        this->builder->ProduceUnitBuilding3();
+        this->builder->ProduceUnitBuilding4();
+        this->builder->ProduceUnitBuilding5();
+
     }
 };
-
 
 class Squad{
 protected:
     Unit* unit;
-    unsigned int number;
+    int number;
 public:
     Squad(){
         unit = NULL;
@@ -215,49 +201,144 @@ public:
             return "Легион";
         }
     }
-    string GetUnitDescription(){
-        return unit->Description();
+    string GetUnitName(){
+        return unit->name();
     }
+
+    int GetNumber(){
+        return number;
+    }
+
+    int GetDied(int dmg){
+        int hp = unit->GetHP();
+        int died = dmg/hp;
+        if (died > number){
+            died = number;
+        }
+        return died;
+    }
+
+    int GetDamage(){
+        return number * unit->GetDamage();
+    }
+
+    void Dismiss(){
+        unit = NULL;
+        number = 0;
+    }
+
+    void AddUnits(int n) {
+        number += n;
+    }
+
 };
 
+class Army{
+public:
+    vector< Squad* > squads;
+    int max_size;
+
+    Army(){
+        max_size = 7;
+    }
+
+    ~Army(){};
+
+    string AddSquad(Squad* squad){
+        for(int i = 0; i < squads.size(); i++){
+            string name = squad->GetUnitName();
+            int number = squad->GetNumber();
+            if(squads[i]->GetUnitName() == name){
+                squads[i]->AddUnits(number);
+                //delete squad;
+                return "В вашу армию добавлены юниты: " + name + ", " + to_string(number);
+            }
+        }
+        if(squads.size() < max_size){
+            squads.push_back(squad);
+            return "В вашу армию добавлены юниты: " + squad->GetUnitName() + ", " + to_string(squad->GetNumber());
+        }
+        return "В вашей армии нет места для " + squad->GetUnitName();
+    }
+
+    void Show(){
+        cout << "\nВаша армия: \n";
+        for(int i = 0; i < squads.size(); i++){
+            cout << squads[i]->GetUnitName() << "\t" << squads[i]->GetNumber() << '\n';
+        }
+    }
+    void ShowEnemy(){
+        cout << "\nСведения о вражеской армии: \n";
+        for(int i = 0; i < squads.size(); i++){
+            cout << squads[i]->GetUnitName() << "\t" << squads[i]->HowMuch() << '\n';
+        }
+    }
+
+    void Dismiss(int n){
+        squads[n]->Dismiss();
+        squads.erase(squads.begin() + n);
+    }
+
+};
 
 int main(){
-    Director* director= new Director();
-    AcademyBuilder* builder = new AcademyBuilder();
-    director->set_builder(builder);
-    int N;
-    cout << "Select: little(1), medium(2) or large(3) town: ";
-    cin >> N;
+    system("chcp 65001");
 
-    Town* town;
+//    Director* director= new Director();
+//    AcademyBuilder* builder = new AcademyBuilder();
+//    director->set_builder(builder);
+//    int N;
+//    cout << "Select: little(1), medium(2) or large(3) town: ";
+//    cin >> N;
+//
+//    Town* town;
+//
+//    if(N == 1){
+//        cout << "Little town\n";
+//        director->BuildLittleTown();
+//    } else if(N == 2){
+//        cout << "Medium town\n";
+//        director->BuildMediumTown();
+//    } else if(N == 3){
+//        cout << "Large town\n";
+//        director->BuildLargeTown();
+//    } else {
+//        delete director;
+//        delete builder;
+//        return 0;
+//    }
+//    town = builder->GetTown();
+//    delete builder;
+//    delete director;
+//
+//    town->ListBuildings();
+//
+//    town->AvailableUnitBuildings();
+//
+//    delete town;
 
-    Halfling* hafling = new Halfling();
+    Squad squad1(new Halfling, 204);
+    Squad squad2(new Dwarf, 178);
+    Squad squad3(new GoldGolem,58);
+    Squad squad4(new Naga, 23);
+    Squad squad5(new Titan, 7);
 
-    Squad squad1(hafling, 10);
-    cout << squad1.HowMuch() << ' ' << squad1.GetUnitDescription() << endl;
+    Squad squad6(new Naga, 85);
 
-    if(N == 1){
-        cout << "Little town\n";
-        director->BuildLittleTown();
-    } else if(N == 2){
-        cout << "Medium town\n";
-        director->BuildMediumTown();
-    } else if(N == 3){
-        cout << "Large town\n";
-        director->BuildLargeTown();
-    } else {
-        delete director;
-        delete builder;
-        return 0;
-    }
-    town = builder->GetTown();
-    delete builder;
-    delete director;
+    Army army1;
+    army1.Show();
+    army1.AddSquad(&squad1);
+    army1.AddSquad(&squad2);
+    army1.Show();
+    army1.AddSquad(&squad3);
+    army1.AddSquad(&squad4);
+    army1.Show();
 
-    town->ListBuildings();
+    army1.ShowEnemy();
 
-    town->AvailableUnitBuildings();
+    army1.AddSquad(&squad6);
+    army1.AddSquad(&squad5);
+    army1.Show();
 
-    delete town;
     return 0;
 }

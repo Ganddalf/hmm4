@@ -44,10 +44,12 @@ public:
 };
 
 class UnitBuilding : public Building {
+protected:
+    unsigned int cost;
+    Unit* unit;
 public:
     ~UnitBuilding(){}
     virtual std::string Description() const = 0;
-    virtual Unit* GetUnit() = 0;
 };
 
 #endif //HMM4_BUILDING_H
