@@ -5,15 +5,21 @@
 #ifndef HMM4_BUILDING_H
 #define HMM4_BUILDING_H
 
+#include "../units/Unit.h"
+
 class Building{
 public:
-    ~Building(){};
+    ~Building()= default;
+    virtual std::string Name() const = 0;
     virtual std::string Description() const = 0;
 };
 
 class Hall : public Building {
 public:
-    ~Hall(){};
+    ~Hall()= default;
+    std::string Name() const override {
+        return "Hall";
+    }
     std::string Description() const override {
         return "Hall";
     }
@@ -21,25 +27,12 @@ public:
 
 class Fort : public Building {
 public:
-    ~Fort(){};
-    std::string Description() const override {
+    ~Fort()= default;
+    std::string Name() const override {
         return "Fort";
     }
-};
-
-class Tavern : public Building {
-public:
-    ~Tavern(){};
     std::string Description() const override {
-        return "Tavern";
-    }
-};
-
-class Prison : public Building {
-public:
-    ~Prison(){};
-    std::string Description() const override {
-        return "Prison";
+        return "Fort";
     }
 };
 
@@ -48,8 +41,9 @@ protected:
     unsigned int cost;
     Unit* unit;
 public:
-    ~UnitBuilding(){}
-    virtual std::string Description() const = 0;
+    ~UnitBuilding()= default;
+    std::string Name() const override = 0;
+    std::string Description() const override = 0;
 };
 
 #endif //HMM4_BUILDING_H
