@@ -14,8 +14,9 @@
 class DwarvenMines : public UnitBuilding {
 public:
     DwarvenMines(){
-        this->cost = 1500;
-        this->unit = new Dwarf();
+        number = 6;
+        cost = 1500;
+        unit = new Dwarf();
     }
     ~DwarvenMines()= default;
     std::string Description() const override {
@@ -29,8 +30,9 @@ public:
 class HalflingBurrows : public UnitBuilding {
 public:
     HalflingBurrows(){
-        this->cost = 1500;
-        this->unit = new Halfling();
+        number = 6;
+        cost = 1500;
+        unit = new Halfling();
     }
     ~HalflingBurrows()= default;
     std::string Description() const override {
@@ -44,8 +46,9 @@ public:
 class GolemFactory : public UnitBuilding {
 public:
     GolemFactory(){
-        this->cost = 3500;
-        this->unit = new GoldGolem();
+        number = 3;
+        cost = 3500;
+        unit = new GoldGolem();
     }
     ~GolemFactory()= default;
     std::string Description() const override {
@@ -59,8 +62,9 @@ public:
 class GoldenPavilion : public UnitBuilding {
 public:
     GoldenPavilion(){
-        this->cost = 7000;
-        this->unit = new Naga();
+        number = 2;
+        cost = 7000;
+        unit = new Naga();
     }
     ~GoldenPavilion()= default;
     std::string Description() const override {
@@ -74,8 +78,9 @@ public:
 class CloudCastle : public UnitBuilding {
 public:
     CloudCastle(){
-        this->cost = 14000;
-        this->unit = new Titan();
+        number = 1;
+        cost = 14000;
+        unit = new Titan();
     }
     ~CloudCastle()= default;
     std::string Description() const override {

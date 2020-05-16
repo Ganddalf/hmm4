@@ -18,6 +18,7 @@ using namespace std;
 class Town{
 public:
     std::string name;
+    std::string type;
     std::vector<Building*> buildings_;
     std::vector<UnitBuilding*> unit_buildings;
     int state;
@@ -27,8 +28,9 @@ public:
     explicit Town(std::string name);
 
     void ListBuildings()const;
-    void AvailableUnitBuildings()const;
+    vector<UnitBuilding*> AvailableUnitBuildings();
     string GetInfoForNextBuilding();
+    string BuildNextBuilding();
 };
 
 

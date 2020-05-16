@@ -15,7 +15,7 @@ public:
     }
     ~Halfling(){}
     std::string name() const override{
-        return "Halfling";
+        return "Полурослик";
     }
 };
 
@@ -29,7 +29,7 @@ public:
     }
     ~Dwarf(){}
     std::string name() const override{
-        return "Dwarf";
+        return "Гном";
     }
 };
 
@@ -43,7 +43,7 @@ public:
     }
     ~GoldGolem(){}
     std::string name() const override{
-        return "Gold golem";
+        return "Золотой голем";
     }
 };
 
@@ -57,7 +57,7 @@ public:
     }
     ~Naga(){}
     std::string name() const override{
-        return "Naga";
+        return "Нага";
     }
 };
 
@@ -71,7 +71,7 @@ public:
     }
     ~Titan(){}
     std::string name() const override{
-        return "Titan";
+        return "Титан";
     }
 };
 

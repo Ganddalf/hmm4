@@ -25,15 +25,15 @@ void Town::ListBuildings()const{
     std::cout << "\n\n";
 }
 
-void Town::AvailableUnitBuildings()const{
-    std::cout << "Available unit buildings: ";
+vector<UnitBuilding*> Town::AvailableUnitBuildings(){
+    vector<UnitBuilding* > v;
     for (auto building : buildings_){
         auto* unitBuilding = dynamic_cast<UnitBuilding*>(building);
         if(unitBuilding){
-            cout << unitBuilding->Name() << ", ";
+            v.push_back(unitBuilding);
         }
     }
-    std::cout << "\n\n";
+    return v;
 }
 
 string Town::GetInfoForNextBuilding(){
@@ -41,6 +41,16 @@ string Town::GetInfoForNextBuilding(){
         return "Вы построили все здания в этом городе!";
     } else {
         return unit_buildings[state]->Description();
+    }
+}
+
+string Town::BuildNextBuilding(){
+    if(state == 5){
+        return "Вы построили все здания в этом городе!";
+    } else {
+        buildings_.push_back(unit_buildings[state]);
+        state++;
+        return "Построено здание: " + unit_buildings[state - 1]->Name();
     }
 }
 

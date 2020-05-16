@@ -10,29 +10,14 @@
 #include "units/academy_units.h"
 #include "Squad.h"
 #include "Army.h"
+#include "Game.h"
 
 using namespace std;
 
 int main(){
     system("chcp 65001");
 
-    auto* director= new Director();
-    auto* builder = new AcademyBuilder();
-    director->set_builder(builder);
-
-    Town* town;
-
-    director->BuildLittleTown();
-    town = builder->GetTown();
-
-    delete builder;
-    delete director;
-
-    town->ListBuildings();
-
-    town->AvailableUnitBuildings();
-
-    delete town;
+    Game();
 
     return 0;
 }

@@ -37,13 +37,22 @@ public:
 };
 
 class UnitBuilding : public Building {
-protected:
-    unsigned int cost;
-    Unit* unit;
 public:
+    int cost;
+    Unit* unit;
+    double number;
     ~UnitBuilding()= default;
     std::string Name() const override = 0;
     std::string Description() const override = 0;
+    void Produce(){
+        number += (unit->GetGrowth() / 7.0);
+    }
+    int GetNumber() const{
+        return floor(number);
+    }
+    void Recruit(int n){
+        number -= n;
+    }
 };
 
 #endif //HMM4_BUILDING_H
