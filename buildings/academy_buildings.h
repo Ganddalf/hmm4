@@ -4,6 +4,7 @@
 
 #ifndef HMM4_ACADEMY_BUILDINGS_H
 #define HMM4_ACADEMY_BUILDINGS_H
+
 #include <string>
 
 #include "building.h"
@@ -12,105 +13,81 @@
 
 class DwarvenMines : public UnitBuilding {
 public:
-    DwarvenMines(){}
-    ~DwarvenMines(){}
-    std::string Description() const override {
-        return "Dwarven Mines";
+    DwarvenMines(){
+        number = 6;
+        cost = 1500;
+        unit = new Dwarf();
     }
-    Unit* GetUnit(){
-        Dwarf* dwarf = new Dwarf();
-        return dwarf;
+    ~DwarvenMines()= default;
+    std::string Description() const override {
+        return "Рудники гномов: позволяет нанимать гномов";
+    }
+    std::string Name() const override {
+        return "Рудники гномов";
     }
 };
 
 class HalflingBurrows : public UnitBuilding {
 public:
-    HalflingBurrows(){}
-    ~HalflingBurrows(){}
-    std::string Description() const override {
-        return "Halfling Burrows";
+    HalflingBurrows(){
+        number = 6;
+        cost = 1500;
+        unit = new Halfling();
     }
-    Unit* GetUnit(){
-        Halfling* halfling = new Halfling();
-        return halfling;
+    ~HalflingBurrows()= default;
+    std::string Description() const override {
+        return "Норы полуросликов: позволяет нанимать полуросликов";
+    }
+    std::string Name() const override {
+        return "Норы полуросликов";
     }
 };
 
 class GolemFactory : public UnitBuilding {
 public:
-    GolemFactory(){}
-    ~GolemFactory(){}
+    GolemFactory(){
+        number = 3;
+        cost = 3500;
+        unit = new GoldGolem();
+    }
+    ~GolemFactory()= default;
     std::string Description() const override {
-        return "Golem Factory";
+        return "Фабрика големов: позволяет нанимать золотых големов";
     }
-    Unit* GetUnit(){
-        GoldGolem* goldGolem = new GoldGolem();
-        return goldGolem;
-    }
-};
-
-class MageTower : public UnitBuilding {
-public:
-    MageTower(){}
-    ~MageTower(){}
-    std::string Description() const override {
-        return "Mage Tower";
-    }
-    Unit* GetUnit(){
-        Mage* mage = new Mage();
-        return mage;
+    std::string Name() const override {
+        return "Фабрика големов";
     }
 };
 
 class GoldenPavilion : public UnitBuilding {
 public:
-    GoldenPavilion(){}
-    ~GoldenPavilion(){}
+    GoldenPavilion(){
+        number = 2;
+        cost = 7000;
+        unit = new Naga();
+    }
+    ~GoldenPavilion()= default;
     std::string Description() const override {
-        return "Golden Pavilion";
+        return "Золотой павильон: позволяет нанимать Наг";
     }
-    Unit* GetUnit(){
-        Naga* naga = new Naga();
-        return naga;
-    }
-};
-
-class AltarOfWishes : public UnitBuilding {
-public:
-    AltarOfWishes(){}
-    ~AltarOfWishes(){}
-    std::string Description() const override {
-        return "Altar of Wishes";
-    }
-    Unit* GetUnit(){
-        Genie* genie = new Genie();
-        return genie;
-    }
-};
-
-class DragonFactory : public UnitBuilding {
-public:
-    DragonFactory(){}
-    ~DragonFactory(){}
-    std::string Description() const override {
-        return "Dragon Factory";
-    }
-    Unit* GetUnit(){
-        DragonGolem* dragonGolem = new DragonGolem();
-        return dragonGolem;
+    std::string Name() const override {
+        return "Золотой павильон";
     }
 };
 
 class CloudCastle : public UnitBuilding {
 public:
-    CloudCastle(){}
-    ~CloudCastle(){}
-    std::string Description() const override {
-        return "Cloud Castle";
+    CloudCastle(){
+        number = 1;
+        cost = 14000;
+        unit = new Titan();
     }
-    Unit* GetUnit(){
-        Titan* titan = new Titan();
-        return titan;
+    ~CloudCastle()= default;
+    std::string Description() const override {
+        return "Облачный замок: позволяет нанимать титанов";
+    }
+    std::string Name() const override {
+        return "Облачный замок";
     }
 };
 
